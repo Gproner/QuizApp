@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=""
+    android:orientation="vertical"
+    android:background="@color/loginBck"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question"
+        android:textSize="25dp"
+        android:id="@+id/txtQuestion"
+        android:textColor="@color/loginText"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A / True"
+            android:textSize="20dp"
+            android:textColor="@color/loginText"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="B / False"
+            android:textSize="20dp"
+            android:textColor="@color/loginText"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:textSize="20dp"
+            android:textColor="@color/loginText"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="D"
+            android:textSize="20dp"
+            android:textColor="@color/loginText"/>
+
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Answer"
+        android:textColor="@color/loginText"
+        android:textSize="20dp"
+        android:textColorHint="@color/buttonsBck"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:background="@color/buttonsBck"/>
+
+</LinearLayout>

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.tylerarruda.myapplication.MainActivity"
+    tools:context="com.example.QuizApp.MainActivity"
     android:orientation="vertical"
     android:background="@color/loginBck">
 
@@ -27,7 +27,8 @@
         android:textColor="@color/loginText"
         android:textColorHint="@color/buttonsBck"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:id="@+id/edtUserName" />
 
     <EditText
         android:layout_width="match_parent"
@@ -35,13 +36,15 @@
         android:hint="Password"
         android:layout_marginBottom="10dp"
         android:textColor="@color/loginText"
-        android:textColorHint="@color/buttonsBck"/>
+        android:textColorHint="@color/buttonsBck"
+        android:id="@+id/edtPassword" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LOG IN"
-        android:background="@color/buttonsBck"/>
+        android:background="@color/buttonsBck"
+        android:id="@+id/btnLogin" />
 
     <TextView
         android:layout_width="wrap_content"
