@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/PreferencesTitle" >
+        <CheckBoxPreference
+            android:title="Only Multiple Choice"
+            android:summary="Sets all questions to multiple choice when creating quiz"
+            android:key="onlyMultipleChoice"
+            />
+
+        <CheckBoxPreference
+            android:title="Only True or False"
+            android:summary="sets all questions to True and false for quiz creation"
+            android:key="onlyTrueorFalse"
+            />
+
+        <CheckBoxPreference
+            android:key="onlyShortAnswer"
+            android:summary="set all questions to be short answer for quiz creation"
+            android:title="Only Short Answer" />
+
+        <CheckBoxPreference
+            android:title="Stay Logged in"
+            android:summary="stay logged in "
+            android:key="stayLoggedIn"/>
+
+
+    </PreferenceCategory>
+</PreferenceScreen>
