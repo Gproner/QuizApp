@@ -1,8 +1,14 @@
 package george.quizapp;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edtUsername, edtPassword;
     Button btnLogIn;
     String username, password;
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 username= getUserName();
                 password = getPassword();
-                Intent intent = new Intent(this, OptionPageFragment.class);
+                //Intent intent = new Intent(this, OptionPageFragment.class);
 
             }
         });
@@ -43,5 +50,16 @@ public class MainActivity extends AppCompatActivity {
         return true;
         //// TODO: 2016-11-14 compare password and username to either SQLite database or similar 
     }
-    
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        //inflate the menu
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public void LaunchSharedPrefFrag(MenuItem item) {
+        Intent intent = new Intent(this, SharedPreferencesActivity.class);
+        startActivity(intent);
+    }
 }
