@@ -6,5 +6,5 @@ package george.quizapp;
 
 public class UserLogicDb {
 
-    
+
 }
