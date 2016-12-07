@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 username= getUserName();
                 password = getPassword();
-                //Intent intent = new Intent(this, OptionPageFragment.class);
-
+                Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);//// TODO: 2016-12-07  change this
+                startActivity(intent);//// TODO: 2016-12-07 create and add quiz as parcable
             }
         });
 

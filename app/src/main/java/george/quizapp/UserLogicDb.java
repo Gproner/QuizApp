@@ -47,7 +47,7 @@ public class UserLogicDb {
         openHelper = new DBHelper(context, DB_NAME, null, DB_VERSION);
     }
 
-    public ArrayList<Users>
+    //public ArrayList<Users>;
     //ide makes this abstract class for us
     //DBHelper
     //Using the cursor of db
