@@ -74,4 +74,13 @@
             android:layout_marginLeft="2.5dp"/>
     </LinearLayout>
 
+    <TextView
+        android:text="Enter a/B/C/D information in the question!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/loginText" />
+
 </LinearLayout>
