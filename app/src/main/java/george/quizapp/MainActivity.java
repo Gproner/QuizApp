@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 username= getUserName();
                 password = getPassword();
-                Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);//// TODO: 2016-12-07  change this
-                startActivity(intent);//// TODO: 2016-12-07 create and add quiz as parcable
+                //Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);//// TODO: 2016-12-07  change this
+                //startActivity(intent);//// TODO: 2016-12-07 create and add quiz as parcable
+                LaunchSharedPrefFrag();
             }
         });
 
@@ -58,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void LaunchSharedPrefFrag(MenuItem item) {
-        Intent intent = new Intent(this, SharedPreferencesActivity.class);
-        startActivity(intent);
+    public void LaunchSharedPrefFrag() {
+        OptionPageFragment optionPageFragment;
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        optionPageFragment = new OptionPageFragment();
+        ft.replace(R.id.container, optionPageFragment);
+        ft.commit();
     }
 }

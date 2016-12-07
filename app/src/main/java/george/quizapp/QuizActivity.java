@@ -18,7 +18,11 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         Intent intent = getIntent();
-        quiz = intent.getParcelableExtra("quiz");
+        //quiz = intent.getParcelableExtra("quiz");
+        if(quiz == null){
+            quiz = new Quiz();
+            quiz.AddMCquestion("Answer is A", 0);
+        }
         question = (TextView) findViewById(R.id.txtQuestion);
         question.setText(quiz.questionList.get(0));
         count = 0;

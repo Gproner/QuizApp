@@ -17,7 +17,7 @@ public class MakeOrTakeActivity extends AppCompatActivity {
 
         takeQuiz = (Button) findViewById(R.id.btnTakeQuiz);
         makeQuiz = (Button) findViewById(R.id.btnMakeQuiz);
-
+        quiz = null;
         takeQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,9 +28,9 @@ public class MakeOrTakeActivity extends AppCompatActivity {
 
     }
     public void onTakeQuiz(){
-        Intent takeQuizIntent = new Intent(MakeOrTakeActivity.this, QuizActivity.class);
+        Intent takeQuizIntent = new Intent(getApplicationContext(), QuizActivity.class);
 
-        takeQuizIntent.putExtra("quiz", quiz);
+        //takeQuizIntent.putExtra("quiz", quiz);
         this.startActivity(takeQuizIntent);
 
     }
