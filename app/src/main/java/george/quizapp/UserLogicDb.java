@@ -1,6 +1,7 @@
 package george.quizapp;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -31,20 +32,57 @@ public class UserLogicDb {
     public static final String ID = "_id";
     public static final int ID_COLUMN = 0;
 
+    public static final String StudentID = "studentid";
+    public static final int STUDENTID_COLUMN = 1;
+
     public static final String PASSWORD = "password";
-    public static final int PASSWORD_COLUMN = 1;
+    public static final int PASSWORD_COLUMN = 2;
 
 
     //Statement for creating the table don't forget spacing!
     public static final String CREATE_LOGIN_TABLE =
             "CREATE TABLE " + LOGIN_TABLE + " (" +
-                    ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + StudentID + " TEXT, " +
                     PASSWORD + " TEXT, " + ")";
 
     public UserLogicDb(Context context) {
 
         //initialize the openhelper
         openHelper = new DBHelper(context, DB_NAME, null, DB_VERSION);
+    }
+
+    public ArrayList<Users> getAllUsers() {
+        ArrayList<Users> users = new ArrayList<>();
+
+        //get readable database
+        database = openHelper.getReadableDatabase();
+
+        //get all records from Login table and order by studentid
+        //cursor represents all the records
+        Cursor cursor = database.query(LOGIN_TABLE, null, null, null, null, null, "studentid");
+
+        //loop through cursor and popular the array list
+        while (cursor.moveToNext()) {
+
+            //get the values
+            long id = cursor.getLong(cursor.getColumnIndex(ID));
+            String studentid = cursor.getString(cursor.getColumnIndex(StudentID));
+            String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
+
+            //add a new student to the arraylist
+            Users user = new Users(studentid, password, id);
+            users.add(user);
+
+
+        }
+
+        cursor.close();
+        database.close();
+
+
+        //return arraylist to caller
+        return users;
     }
 
     //public ArrayList<Users>;
