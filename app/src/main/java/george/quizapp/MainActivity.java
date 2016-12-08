@@ -70,6 +70,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+            fm.beginTransaction()
+                    .replace(R.id.container, detailFragment, DetailFragment.TAG)
+                    .addToBackStack(ListFragment.TAG)
+                    .commit();
+        } else{
+            DetailFragment  df=
+                    (DetailFragment) fm.findFragmentByTag(DetailFragment.TAG);
+
+            df.update(bundle);
+        }
+
+
         }
 
         FragmentTransaction ft = fm.beginTransaction();
