@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 password = getPassword();
                 //Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);//// TODO: 2016-12-07  change this
                 //startActivity(intent);//// TODO: 2016-12-07 create and add quiz as parcable
-                LaunchOptionFrag();
+                //LaunchOptionFrag();
             }
         });
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void LaunchOptionFrag() {
+    /*public void LaunchOptionFrag() {
 
         FragmentManager fm = getFragmentManager();
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    }
+    }*/
 
 }
 
