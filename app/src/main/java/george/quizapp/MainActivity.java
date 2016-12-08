@@ -60,8 +60,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LaunchSharedPrefFrag() {
-        OptionPageFragment optionPageFragment;
+
         FragmentManager fm = getFragmentManager();
+
+        View view = findViewById(R.id.container);
+
+        if (view == null){
+            OptionPageFragment optionPageFragment = new OptionPageFragment();
+
+
+
+        }
+
         FragmentTransaction ft = fm.beginTransaction();
         optionPageFragment = new OptionPageFragment();
         ft.replace(R.id.container, optionPageFragment);
