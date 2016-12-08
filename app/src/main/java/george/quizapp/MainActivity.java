@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogIn;
     String username, password;
     SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 username= getUserName();
                 password = getPassword();
-                //Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);//// TODO: 2016-12-07  change this
-                //startActivity(intent);//// TODO: 2016-12-07 create and add quiz as parcable
-                //LaunchOptionFrag();
+
             }
         });
 
@@ -59,7 +58,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /*public void LaunchOptionFrag() {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent sharedPrefActivity = new Intent(this, SharedPreferencesActivity.class);
+        startActivity(sharedPrefActivity);
+
+
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void LaunchOptionFrag() {
 
         FragmentManager fm = getFragmentManager();
 
@@ -84,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    }*/
+    }
 
 }
 

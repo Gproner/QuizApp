@@ -13,7 +13,7 @@ public class SharedPreferencesActivity extends PreferenceActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.xml.user_pref);
+//        setContentView(R.xml.user_pref);
 
         addPreferencesFromResource(R.xml.user_pref);
 

@@ -4,7 +4,6 @@
         android:id="@+id/settings"
         android:orderInCategory="10"
         android:title="Default Settings"
-        android:onClick="LaunchSharedPrefFrag"
         />
 
 </menu>
