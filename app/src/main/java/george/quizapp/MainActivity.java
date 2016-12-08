@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            fm.beginTransaction()
+        /*    fm.beginTransaction()
                     .replace(R.id.container, detailFragment, DetailFragment.TAG)
                     .addToBackStack(ListFragment.TAG)
                     .commit();
@@ -89,6 +89,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         optionPageFragment = new OptionPageFragment();
         ft.replace(R.id.container, optionPageFragment);
-        ft.commit();
+        ft.commit();*/
     }
 }
