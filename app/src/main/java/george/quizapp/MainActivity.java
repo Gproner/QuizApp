@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 password = getPassword();
                 //Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);//// TODO: 2016-12-07  change this
                 //startActivity(intent);//// TODO: 2016-12-07 create and add quiz as parcable
-                LaunchSharedPrefFrag();
+                LaunchOptionFrag();
             }
         });
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void LaunchSharedPrefFrag() {
+    public void LaunchOptionFrag() {
 
         FragmentManager fm = getFragmentManager();
 
@@ -68,27 +68,23 @@ public class MainActivity extends AppCompatActivity {
         if (view == null){
             OptionPageFragment optionPageFragment = new OptionPageFragment();
 
-
-
-
-
-        /*    fm.beginTransaction()
-                    .replace(R.id.container, detailFragment, DetailFragment.TAG)
-                    .addToBackStack(ListFragment.TAG)
+            fm.beginTransaction()
+                    .replace(R.id.container, optionPageFragment)
+                    .addToBackStack(optionPageFragment.TAG)
                     .commit();
         } else{
-            DetailFragment  df=
-                    (DetailFragment) fm.findFragmentByTag(DetailFragment.TAG);
+            OptionPageFragment  op=
+                    (OptionPageFragment) fm.findFragmentByTag(OptionPageFragment.TAG);
+                fm.beginTransaction()
+                    .replace(R.id.container, op)
+                    .addToBackStack(op.TAG)
+                    .commit();
 
-            df.update(bundle);
+
         }
 
 
-        }
-
-        FragmentTransaction ft = fm.beginTransaction();
-        optionPageFragment = new OptionPageFragment();
-        ft.replace(R.id.container, optionPageFragment);
-        ft.commit();*/
     }
+
 }
+
