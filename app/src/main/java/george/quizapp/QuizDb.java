@@ -5,28 +5,25 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Created by Calvin Lai on 2016-12-06.
+ * Created by georg on 2016-12-10.
  */
 
-public class UserLogicDb {
-
-
+public class QuizDb {
     //instance members for accessing the database
     private SQLiteDatabase database;
     private SQLiteOpenHelper openHelper;
 
 
     //constants for the db
-    public static final String DB_NAME = "login.db";
+    public static final String DB_NAME = "pronerj_QuizApp";
     public static final int DB_VERSION = 1;
 
 
     //constants for the table
-    public static final String LOGIN_TABLE = "Login";
+    public static final String QUIZ_TABLE = "Quizzes";
 
 
     public static final String ID = "_id";
@@ -46,10 +43,10 @@ public class UserLogicDb {
                     + StudentID + " TEXT, " +
                     PASSWORD + " TEXT, " + ")";
 
-    public UserLogicDb(Context context) {
+    public QuizDb(Context context) {
 
         //initialize the openhelper
-        openHelper = new DBHelper(context, DB_NAME, null, DB_VERSION);
+        openHelper = new UserLogicDb.DBHelper(context, DB_NAME, null, DB_VERSION);
     }
 
     public ArrayList<Users> getAllUsers() {
@@ -89,7 +86,7 @@ public class UserLogicDb {
     //ide makes this abstract class for us
     //DBHelper
     //Using the cursor of db
-    public static class DBHelper extends SQLiteOpenHelper {
+    private static class DBHelper extends SQLiteOpenHelper {
         public DBHelper(Context context, String dbName, SQLiteDatabase.CursorFactory cf, int dbVersion) {
             super(context, dbName, cf, dbVersion);
         }
