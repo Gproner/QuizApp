@@ -97,12 +97,13 @@ public class MainActivity extends AppCompatActivity {
 
         username= getUserName();
         password = getPassword();
-        usernameandPassDb = new UserLogicDb(this);
+        usernameandPassDb = new UserLogicDb(getApplicationContext());
         ArrayList<User> users = usernameandPassDb.getAllUsers();
         int size = users.size();
         if(size ==0){
             Toast.makeText(MainActivity.this, "Nothing in DB", Toast.LENGTH_SHORT).show();
-
+            Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);
+            startActivity(intent);
         }
         for(int i = 0; i < size; i++ ) {
             if (username.equals(users.get(i).GetName()) && password.equals(users.get(i).GetPassword())) {//if user name and password match from db
