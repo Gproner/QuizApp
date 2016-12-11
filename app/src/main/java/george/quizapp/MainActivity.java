@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
         Intent sharedPrefActivity = new Intent(this, SharedPreferencesActivity.class);
         startActivity(sharedPrefActivity);
 

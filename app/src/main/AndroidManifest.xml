@@ -19,6 +19,7 @@
         <activity android:name=".MakeQuizActivity" />
         <activity android:name=".MakeAnswerActivity" />
         <activity android:name=".MakeOrTakeActivity"></activity>
+        <activity android:name=".SharedPreferencesActivity"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
  */
 
 public class SharedPreferencesActivity extends PreferenceActivity{
+
+    private SettingsListener settingsListener = new SettingsListener();
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -19,7 +21,21 @@ public class SharedPreferencesActivity extends PreferenceActivity{
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
+        settings.registerOnSharedPreferenceChangeListener(settingsListener);
 
+
+
+
+    }
+
+    class SettingsListener implements SharedPreferences.OnSharedPreferenceChangeListener{
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            String format = "Key: %s. value: %s";
+            String value;
+
+        }
     }
 
 }

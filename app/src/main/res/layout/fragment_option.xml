@@ -33,6 +33,7 @@
     </Spinner>
 
     <EditText
+        android:id="@+id/edtQuizName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name your quiz"/>
