@@ -3,13 +3,45 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/cont">
+        android:layout_height="wrap_content">
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Make Quiz"
+            android:id="@+id/btnMakeQuiz"
+            android:layout_weight="1"
+            android:background="@color/loginBck"
+            android:layout_marginRight="2.5dp"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Take Quiz"
+            android:id="@+id/btnTakeQuiz"
+            android:layout_weight="1"
+            android:background="@color/loginBck"
+            android:layout_marginLeft="2.5dp"/>
+    </LinearLayout>
 
-    </FrameLayout>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnQuizSelector">
+    </Spinner>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name your quiz"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:background="@color/loginBck"/>
+
 
 </LinearLayout>

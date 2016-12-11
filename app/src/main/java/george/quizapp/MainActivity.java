@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogIn;
     String username, password;
     SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +31,20 @@ public class MainActivity extends AppCompatActivity {
         btnLogIn = (Button) findViewById(R.id.btnLogin);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         edtUsername = (EditText) findViewById(R.id.edtUserName);
-        
+
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 username= getUserName();
                 password = getPassword();
-
+                if(username.equals("")|| password.equals("")){//if nothing was entered a dialog will pop up
+                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else {
+                    Intent makeorTakeActivityIntent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);
+                    startActivity(makeorTakeActivityIntent);
+                }
             }
         });
 
@@ -69,32 +79,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void LaunchOptionFrag() {
 
-        FragmentManager fm = getFragmentManager();
-
-        View view = findViewById(R.id.container);
-
-        if (view == null){
-            OptionPageFragment optionPageFragment = new OptionPageFragment();
-
-            fm.beginTransaction()
-                    .replace(R.id.container, optionPageFragment)
-                    .addToBackStack(optionPageFragment.TAG)
-                    .commit();
-        } else{
-            OptionPageFragment  op=
-                    (OptionPageFragment) fm.findFragmentByTag(OptionPageFragment.TAG);
-                fm.beginTransaction()
-                    .replace(R.id.container, op)
-                    .addToBackStack(op.TAG)
-                    .commit();
-
-
-        }
-
-
-    }
 
 }
 

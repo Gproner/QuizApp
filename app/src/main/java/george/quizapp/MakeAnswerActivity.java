@@ -1,7 +1,9 @@
 package george.quizapp;
 
+import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MakeAnswerActivity extends AppCompatActivity {
 
@@ -11,5 +13,8 @@ public class MakeAnswerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_make_answer);
 
 
+
     }
+
+
 }
