@@ -1,5 +1,6 @@
 package george.quizapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,8 +33,8 @@ public class UserLogicDb {
     public static final String ID = "_id";
     public static final int ID_COLUMN = 0;
 
-    public static final String StudentID = "studentid";
-    public static final int STUDENTID_COLUMN = 1;
+    public static final String NAME = "name";
+    public static final int NAME_COLUMN = 1;
 
     public static final String PASSWORD = "password";
     public static final int PASSWORD_COLUMN = 2;
@@ -41,37 +42,57 @@ public class UserLogicDb {
 
     //Statement for creating the table don't forget spacing!
     public static final String CREATE_LOGIN_TABLE =
-            "CREATE TABLE " + LOGIN_TABLE + " (" +
+            "CREATE TABLE " + LOGIN_TABLE + " ( " +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + StudentID + " TEXT, " +
-                    PASSWORD + " TEXT, " + ")";
+                    + NAME + " TEXT, " +
+                    PASSWORD + " TEXT " + ")";
 
     public UserLogicDb(Context context) {
 
         //initialize the openhelper
         openHelper = new DBHelper(context, DB_NAME, null, DB_VERSION);
     }
+    /**
+     * Saves the mission to the Database
+     * @param user passes in the user to save to the database
+     * @return returns the id of the user saved
+     */
+    public long SaveUser(User user) {
+        boolean success = false;
 
-    public ArrayList<Users> getAllUsers() {
-        ArrayList<Users> users = new ArrayList<>();
+        ContentValues cv = new ContentValues();
+
+        cv.put(user.GetName(), NAME_COLUMN);
+        cv.put(user.GetPassword(), PASSWORD_COLUMN);
+
+        database = openHelper.getWritableDatabase();
+        long id = database.insert(LOGIN_TABLE, null, cv);
+
+        database.close();
+        return id;
+    }
+
+
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> users = new ArrayList<>();
 
         //get readable database
         database = openHelper.getReadableDatabase();
 
         //get all records from Login table and order by studentid
         //cursor represents all the records
-        Cursor cursor = database.query(LOGIN_TABLE, null, null, null, null, null, "studentid");
+        Cursor cursor = database.query(LOGIN_TABLE, null, null, null, null, null, ID);
 
         //loop through cursor and popular the array list
         while (cursor.moveToNext()) {
 
             //get the values
             long id = cursor.getLong(cursor.getColumnIndex(ID));
-            String studentid = cursor.getString(cursor.getColumnIndex(StudentID));
+            String name = cursor.getString(cursor.getColumnIndex(NAME));
             String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
 
             //add a new student to the arraylist
-            Users user = new Users(studentid, password, id);
+            User user = new User(name, password);
             users.add(user);
 
 

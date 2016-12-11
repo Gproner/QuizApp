@@ -29,19 +29,19 @@ public class QuizDb {
     public static final String ID = "_id";
     public static final int ID_COLUMN = 0;
 
-    public static final String StudentID = "studentid";
-    public static final int STUDENTID_COLUMN = 1;
+    public static final String QUESTION = "Question";
+    public static final int QUESTION_COLUMN = 1;
 
-    public static final String PASSWORD = "password";
-    public static final int PASSWORD_COLUMN = 2;
+    public static final String ANSWER = "Answer";
+    public static final int ANSWER_COLUMN = 2;
 
 
     //Statement for creating the table don't forget spacing!
     public static final String CREATE_LOGIN_TABLE =
-            "CREATE TABLE " + LOGIN_TABLE + " (" +
+            "CREATE TABLE " + QUIZ_TABLE + " (" +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + StudentID + " TEXT, " +
-                    PASSWORD + " TEXT, " + ")";
+                    + QUESTION + " TEXT, " +
+                    ANSWER + " TEXT, " + ")";
 
     public QuizDb(Context context) {
 
@@ -57,15 +57,15 @@ public class QuizDb {
 
         //get all records from Login table and order by studentid
         //cursor represents all the records
-        Cursor cursor = database.query(LOGIN_TABLE, null, null, null, null, null, "studentid");
+        Cursor cursor = database.query(QUIZ_TABLE, null, null, null, null, null, "studentid");
 
         //loop through cursor and popular the array list
         while (cursor.moveToNext()) {
 
             //get the values
             long id = cursor.getLong(cursor.getColumnIndex(ID));
-            String studentid = cursor.getString(cursor.getColumnIndex(StudentID));
-            String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
+            String studentid = cursor.getString(cursor.getColumnIndex(QUESTION));
+            String password = cursor.getString(cursor.getColumnIndex(ANSWER));
 
             //add a new student to the arraylist
             Users user = new Users(studentid, password, id);
@@ -80,6 +80,10 @@ public class QuizDb {
 
         //return arraylist to caller
         return users;
+    }
+
+    public static void SaveQuiz(Quiz quiz) {
+
     }
 
     //public ArrayList<Users>;
@@ -103,7 +107,7 @@ public class QuizDb {
 
             //drop the table if it is a wrong version and call onCreate() not checking for version
             //info
-            db.execSQL("DROP TABLE IF EXISTS" + LOGIN_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS" + QUIZ_TABLE);
             onCreate(db);
         }
     }
