@@ -62,8 +62,8 @@ public class UserLogicDb {
 
         ContentValues cv = new ContentValues();
 
-        cv.put(user.GetName(), NAME_COLUMN);
-        cv.put(user.GetPassword(), PASSWORD_COLUMN);
+        cv.put(NAME, user.GetName());
+        cv.put(PASSWORD, user.GetPassword());
 
         database = openHelper.getWritableDatabase();
         long id = database.insert(LOGIN_TABLE, null, cv);
@@ -75,13 +75,12 @@ public class UserLogicDb {
 
     public ArrayList<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<>();
-
         //get readable database
         database = openHelper.getReadableDatabase();
 
         //get all records from Login table and order by studentid
         //cursor represents all the records
-        Cursor cursor = database.query(LOGIN_TABLE, null, null, null, null, null, ID);
+        Cursor cursor = database.query(LOGIN_TABLE, null, null, null, null, null, null);
 
         //loop through cursor and popular the array list
         while (cursor.moveToNext()) {

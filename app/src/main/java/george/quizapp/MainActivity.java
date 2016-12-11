@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         CheckNetwork();
-        usernameandPassDb = new UserLogicDb(getApplicationContext());
+
 
 
     }
@@ -97,8 +97,13 @@ public class MainActivity extends AppCompatActivity {
 
         username= getUserName();
         password = getPassword();
+        usernameandPassDb = new UserLogicDb(this);
         ArrayList<User> users = usernameandPassDb.getAllUsers();
         int size = users.size();
+        if(size ==0){
+            Toast.makeText(MainActivity.this, "Nothing in DB", Toast.LENGTH_SHORT).show();
+
+        }
         for(int i = 0; i < size; i++ ) {
             if (username.equals(users.get(i).GetName()) && password.equals(users.get(i).GetPassword())) {//if user name and password match from db
                 Toast toast = Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT);
