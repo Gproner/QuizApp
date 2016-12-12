@@ -28,10 +28,13 @@ public class OptionPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_option, container, false);
         takeQuiz = (Button) view.findViewById(R.id.btnTakeQuiz);
+        Intent intent = getActivity().getIntent();
+        final Quiz quiz = intent.getParcelableExtra("quiz");
         takeQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra("quiz", quiz);
                 startActivity(intent);
             }
         });

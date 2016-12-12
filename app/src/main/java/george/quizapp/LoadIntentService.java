@@ -54,7 +54,7 @@ public class LoadIntentService extends IntentService {
 
             if(responseCode == HttpURLConnection.HTTP_OK){ //If the connection is OK use info to create db
 
-                QuizDb quizDb = new QuizDb(this); //make new Database
+                QuizDb quizDb = new QuizDb(getApplicationContext()); //make new Database
 
 
 
@@ -68,7 +68,7 @@ public class LoadIntentService extends IntentService {
 
                 }
                 Quiz quiz = new Quiz(listOfQuestions);//new mission is created with the string passed in for priority and mission description
-                QuizDb.SaveQuiz(quiz);// call save mission to save the mission to the database
+                quizDb.SaveQuiz(quiz);// call save mission to save the mission to the database
                 Intent broadcastIntent = new Intent(); //create broadcast intent
                 broadcastIntent.putExtra(LOAD_SUCCESS, true); //adding that the load was successful
                 broadcastIntent.setAction(LOAD_BROADCAST); //set action to constant load broadcast

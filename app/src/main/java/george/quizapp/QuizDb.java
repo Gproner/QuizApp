@@ -1,5 +1,6 @@
 package george.quizapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -63,11 +64,10 @@ public class QuizDb {
         while (cursor.moveToNext()) {
 
             //get the values
-            long id = cursor.getLong(cursor.getColumnIndex(ID));
             String question = cursor.getString(cursor.getColumnIndex(QUESTION));
             int answer = cursor.getInt(cursor.getColumnIndex(ANSWER));
 
-            //add a new student to the arraylist
+            //add a new question to the arraylist
             quiz.AddMCquestion(question, answer);
 
 
@@ -80,10 +80,22 @@ public class QuizDb {
         //return arraylist to caller
         return quiz;
     }
+    public long SaveQuiz(Quiz quiz) {
+        boolean success = false;
 
-    public static void SaveQuiz(Quiz quiz) {
+        ContentValues cv = new ContentValues();
+        for(int i = 0; i< quiz.questionList.size(); i++) {
+            cv.put(QUESTION, quiz.questionList.get(i));
+            cv.put(ANSWER, quiz.multipleChoiceAnswerList.get(i));
+        }
+        database = openHelper.getWritableDatabase();
+        long id = database.insert(QUIZ_TABLE, null, cv);
 
+        database.close();
+        return id;
     }
+
+
 
     //public ArrayList<Users>;
     //ide makes this abstract class for us

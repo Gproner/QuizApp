@@ -18,22 +18,14 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        /*Intent intent = new Intent(this, LoadIntentService.class); // if successful create an intent for the background intent service
-        startService(intent);//start LoadIntentService (background activity to get the database from online)
-        quizDb = new QuizDb(getApplicationContext());
-        quiz = quizDb.GetQuiz();
+        Intent intent = getIntent();
+        quiz = intent.getParcelableExtra("quiz");
         question = (TextView) findViewById(R.id.txtQuestion);
         question.setText(quiz.questionList.get(0));
         count = 0;
         answer = (Button) findViewById(R.id.btnSaveAnswer);
         iscorrect = (TextView) findViewById(R.id.txtIsAnswerCorrect);
 
-        answer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnswerQuestion();
-            }
-        });*/
 
     }
 

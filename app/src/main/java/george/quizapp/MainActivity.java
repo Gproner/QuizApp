@@ -39,11 +39,22 @@ public class MainActivity extends AppCompatActivity {
                     boolean success = intent.getBooleanExtra(UserNamePasswordService.LOAD_SUCCESS, false);//load success, default false
 
                     if (success) {
-                        Toast.makeText(MainActivity.this, "Successfully loaded profiles", Toast.LENGTH_SHORT).show();//toast pops up saying successfully loaded if LOAD_SUCCESS comes back true
+                        //Toast.makeText(MainActivity.this, "Successfully loaded profiles", Toast.LENGTH_SHORT).show();//toast pops up saying successfully loaded if LOAD_SUCCESS comes back true
 
                     }
                     else{
-                        Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "ERROR with profiles", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else if (intent.getAction().equals(LoadIntentService.LOAD_BROADCAST)){
+                    boolean success = intent.getBooleanExtra(LoadIntentService.LOAD_SUCCESS, false);//load success, default false
+
+                    if (success) {
+                        Toast.makeText(MainActivity.this, "Successfully loaded quizzes", Toast.LENGTH_SHORT).show();//toast pops up saying successfully loaded if LOAD_SUCCESS comes back true
+
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "ERROR with quizzes", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -71,12 +82,14 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter loadFilter = new IntentFilter(); //initializing intentFilter for what intents or broadcasts we wanna receive
         loadFilter.addCategory(Intent.CATEGORY_DEFAULT); //setting loadFilter Category.
         loadFilter.addAction(UserNamePasswordService.LOAD_BROADCAST);//adding filter to the intent filter for what we want to recieve
+        loadFilter.addAction(LoadIntentService.LOAD_BROADCAST);
         //loadFilter.addAction(MissionActivity.MISSION_COMPLETED);//we're listening to a broadcast from missionActivity stating that Mission was completed
         registerReceiver(receiver, loadFilter);//registering the reciever with the filter of the params above
 
 
         CheckNetwork();
-
+        Intent getQuizServiceIntent = new Intent(this, LoadIntentService.class);
+        startService(getQuizServiceIntent);
 
 
     }
@@ -97,12 +110,15 @@ public class MainActivity extends AppCompatActivity {
             if (username.equals(users.get(i).GetName()) && password.equals(users.get(i).GetPassword())) {//if user name and password match from db
                 Toast toast = Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT);
                 toast.show();
+                QuizDb quizDb = new QuizDb(this);
+                Quiz quiz = quizDb.GetQuiz();
                 Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);
+                intent.putExtra("quiz", quiz);
                 startActivity(intent);
                 break;
             }
-        Toast toast = Toast.makeText(getApplicationContext(), "Invalid Username and password", Toast.LENGTH_SHORT);
-        toast.show();
+        //Toast toast = Toast.makeText(getApplicationContext(), "Invalid Username and password", Toast.LENGTH_SHORT);
+        //toast.show();
 
         }
     }
