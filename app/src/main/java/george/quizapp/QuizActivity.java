@@ -17,7 +17,8 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, LoadIntentService.class); // if successful create an intent for the background intent service
+        setContentView(R.layout.activity_quiz);
+        /*Intent intent = new Intent(this, LoadIntentService.class); // if successful create an intent for the background intent service
         startService(intent);//start LoadIntentService (background activity to get the database from online)
         quizDb = new QuizDb(getApplicationContext());
         quiz = quizDb.GetQuiz();
@@ -32,7 +33,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AnswerQuestion();
             }
-        });
+        });*/
 
     }
 

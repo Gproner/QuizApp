@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Take Quiz"
             android:id="@+id/btnTakeQuiz"
+            android:onClick="OnTakeQuiz"
             android:layout_weight="1"
             android:background="@color/loginBck"
             android:layout_marginLeft="2.5dp"/>
