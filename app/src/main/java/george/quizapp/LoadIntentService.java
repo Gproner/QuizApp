@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -60,12 +61,14 @@ public class LoadIntentService extends IntentService {
                 is = httpConn.getInputStream(); //getting the text
 
                 Scanner scanner = new Scanner(is);//reading the text
+                ArrayList<String> listOfQuestions = new ArrayList<String>();
                 while (scanner.hasNextLine()){//while there is more lines in text
                     String lineIn = scanner.nextLine(); //string line is the line read from text
-                    Quiz quiz = new Quiz(lineIn);//new mission is created with the string passed in for priority and mission description
-                    QuizDb.SaveQuiz(quiz);// call save mission to save the mission to the database
-                }
+                    listOfQuestions.add(lineIn);
 
+                }
+                Quiz quiz = new Quiz(listOfQuestions);//new mission is created with the string passed in for priority and mission description
+                QuizDb.SaveQuiz(quiz);// call save mission to save the mission to the database
                 Intent broadcastIntent = new Intent(); //create broadcast intent
                 broadcastIntent.putExtra(LOAD_SUCCESS, true); //adding that the load was successful
                 broadcastIntent.setAction(LOAD_BROADCAST); //set action to constant load broadcast

@@ -18,12 +18,16 @@ public class Quiz implements Parcelable{
         questionList = qL;
         multipleChoiceAnswerList = mCAL;
     }
-    public Quiz(String... lineIn){
-    for(int i = 0; i< lineIn.length; i++) {
-        String[] splitLine = lineIn[i].split(":");
+    public Quiz(ArrayList<String> lineIn){
+    for(int i = 0; i< lineIn.size(); i++) {
+        String[] splitLine = lineIn.get(i).split(":");
         this.questionList.add(splitLine[0]);
         this.multipleChoiceAnswerList.add(Integer.parseInt(splitLine[0]));
     }
+    }
+    public Quiz(){
+        questionList = new ArrayList<String>();
+        multipleChoiceAnswerList = new ArrayList<Integer>();
     }
 
     protected Quiz(Parcel in) {

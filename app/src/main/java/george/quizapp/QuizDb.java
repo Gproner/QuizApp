@@ -37,11 +37,11 @@ public class QuizDb {
 
 
     //Statement for creating the table don't forget spacing!
-    public static final String CREATE_LOGIN_TABLE =
+    public static final String CREATE_QUIZ_TABLE =
             "CREATE TABLE " + QUIZ_TABLE + " (" +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + QUESTION + " TEXT, " +
-                    ANSWER + " TEXT, " + ")";
+                    ANSWER + " INTEGER" + ")";
 
     public QuizDb(Context context) {
 
@@ -49,27 +49,26 @@ public class QuizDb {
         openHelper = new UserLogicDb.DBHelper(context, DB_NAME, null, DB_VERSION);
     }
 
-    public ArrayList<Users> getAllUsers() {
-        ArrayList<Users> users = new ArrayList<>();
+    public Quiz GetQuiz() {
+        Quiz quiz = new Quiz();
 
         //get readable database
         database = openHelper.getReadableDatabase();
 
         //get all records from Login table and order by studentid
         //cursor represents all the records
-        Cursor cursor = database.query(QUIZ_TABLE, null, null, null, null, null, "studentid");
+        Cursor cursor = database.query(QUIZ_TABLE, null, null, null, null, null, null);
 
         //loop through cursor and popular the array list
         while (cursor.moveToNext()) {
 
             //get the values
             long id = cursor.getLong(cursor.getColumnIndex(ID));
-            String studentid = cursor.getString(cursor.getColumnIndex(QUESTION));
-            String password = cursor.getString(cursor.getColumnIndex(ANSWER));
+            String question = cursor.getString(cursor.getColumnIndex(QUESTION));
+            int answer = cursor.getInt(cursor.getColumnIndex(ANSWER));
 
             //add a new student to the arraylist
-            Users user = new Users(studentid, password, id);
-            users.add(user);
+            quiz.AddMCquestion(question, answer);
 
 
         }
@@ -79,7 +78,7 @@ public class QuizDb {
 
 
         //return arraylist to caller
-        return users;
+        return quiz;
     }
 
     public static void SaveQuiz(Quiz quiz) {
@@ -99,7 +98,7 @@ public class QuizDb {
         public void onCreate(SQLiteDatabase db) {
             //called by database if the database doesn't exist yet
             //runtime creates the db
-            db.execSQL(CREATE_LOGIN_TABLE);
+            db.execSQL(CREATE_QUIZ_TABLE);
         }
 
         @Override

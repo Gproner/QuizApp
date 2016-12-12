@@ -39,24 +39,12 @@ public class MainActivity extends AppCompatActivity {
                     boolean success = intent.getBooleanExtra(UserNamePasswordService.LOAD_SUCCESS, false);//load success, default false
 
                     if (success) {
-                        Toast.makeText(MainActivity.this, "Successfully loaded", Toast.LENGTH_SHORT).show();//toast pops up saying successfully loaded if LOAD_SUCCESS comes back true
+                        Toast.makeText(MainActivity.this, "Successfully loaded profiles", Toast.LENGTH_SHORT).show();//toast pops up saying successfully loaded if LOAD_SUCCESS comes back true
 
                     }
                     else{
                         Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                     }
-                } else if (intent.getAction().equals(LoadIntentService.LOAD_SUCCESS)) {//if mission is completed
-                   /* Mission mission = intent.getParcelableExtra("mission");//get the mission description
-
-                    MissionDb missionDb = new MissionDb(MainActivity.this);// Creating new mission DB with this activity as context
-
-                    Toast.makeText(MainActivity.this, "Mission Completed:" + mission.isCompleted(), Toast.LENGTH_LONG).show();//showing true if the mission was completed
-
-                    int numRows = missionDb.SetMissionCompleted(mission);//setting mission complete and returning 1 if mission was changed to completed. 0 if no missions in the DB were changed to completed.
-
-
-                    if(numRows > 0) {// if there
-                        txtCompletedMissions.setText("Mission Completed: " + mission.getMission());//setting the text on textview to say which mission was completed with the mission description*/
                 }
 
 
