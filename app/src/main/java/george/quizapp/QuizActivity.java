@@ -13,16 +13,14 @@ public class QuizActivity extends AppCompatActivity {
     Quiz quiz;
     Button answer;
     int count;
+    QuizDb quizDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
-        Intent intent = getIntent();
-        //quiz = intent.getParcelableExtra("quiz");
-        if(quiz == null){
-            quiz = new Quiz();
-            quiz.AddMCquestion("Answer is A", 0);
-        }
+        Intent intent = new Intent(this, LoadIntentService.class); // if successful create an intent for the background intent service
+        startService(intent);//start LoadIntentService (background activity to get the database from online)
+        quizDb = new QuizDb(getApplicationContext());
+        quiz = quizDb.GetQuiz();
         question = (TextView) findViewById(R.id.txtQuestion);
         question.setText(quiz.questionList.get(0));
         count = 0;
@@ -32,7 +30,7 @@ public class QuizActivity extends AppCompatActivity {
         answer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AnswerQuestion();
             }
         });
 

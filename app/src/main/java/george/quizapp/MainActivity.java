@@ -99,10 +99,11 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
                 Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);
                 startActivity(intent);
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "Invalid Username and password", Toast.LENGTH_SHORT);
-                toast.show();
+                break;
             }
+        Toast toast = Toast.makeText(getApplicationContext(), "Invalid Username and password", Toast.LENGTH_SHORT);
+        toast.show();
+
         }
     }
 
