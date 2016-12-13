@@ -123,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
     public String getUserName(){
         return edtUsername.getText().toString();
     }
