@@ -26,11 +26,11 @@ public class MakeOrTakeActivity extends AppCompatActivity {
 
 
     }
-    private void onTakeQuiz(){
-        Intent takeQuizIntent = new Intent(this, QuizActivity.class);
-        startActivity(takeQuizIntent);
+    //private void onTakeQuiz(){
+     //   Intent takeQuizIntent = new Intent(this, QuizActivity.class);
+     //   startActivity(takeQuizIntent);
 
-    }
+    //}
     public void LaunchOptionFrag() {
 
         FragmentManager fm = getFragmentManager();

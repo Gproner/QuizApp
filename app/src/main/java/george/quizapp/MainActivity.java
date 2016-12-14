@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         CheckNetwork();
-        Intent getQuizServiceIntent = new Intent(this, LoadIntentService.class);
-        startService(getQuizServiceIntent);
+        //Intent getQuizServiceIntent = new Intent(this, LoadIntentService.class);
+        //startService(getQuizServiceIntent);
 
 
     }
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 QuizDb quizDb = new QuizDb(this);
                 Quiz quiz = quizDb.GetQuiz();
                 Intent intent = new Intent(getApplicationContext(), MakeOrTakeActivity.class);
-                intent.putExtra("quiz", quiz);
+                //intent.putExtra("quiz", quiz);
                 startActivity(intent);
                 break;
             }
